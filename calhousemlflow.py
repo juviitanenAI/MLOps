@@ -2,6 +2,11 @@
 #   MLflow Setup (MUST be FIRST in file)
 # ============================================
 import os
+from pathlib import Path
+
+# Create a dedicated directory for all generated products (logs, images, datasets, etc.)
+PRODUCTS_DIR = os.path.abspath("products")
+os.makedirs(PRODUCTS_DIR, exist_ok=True)
 
 # Remove any environment overrides BEFORE importing mlflow
 os.environ.pop("MLFLOW_TRACKING_URI", None)
@@ -12,12 +17,17 @@ import mlflow
 import mlflow.sklearn
 
 # Force MLflow to use your local file store (NOT SQLite, NOT OneDrive!)
-mlflow.set_tracking_uri("file:///C:/mlruns")
+# Use a local 'mlruns' folder inside the products directory
+mlruns_dir = os.path.join(PRODUCTS_DIR, "mlruns")
+# Convert absolute path to platform-agnostic file URI
+mlruns_uri = Path(mlruns_dir).as_uri()
+
+mlflow.set_tracking_uri(mlruns_uri)
 
 # Debug + safety check
 uri_now = mlflow.get_tracking_uri()
 print(f"[DEBUG] MLflow tracking URI at script start: {uri_now}")
-assert uri_now == "file:///C:/mlruns", f"Unexpected MLflow URI: {uri_now}"
+assert uri_now == mlruns_uri, f"Unexpected MLflow URI: {uri_now}"
 
 
 # ============================================
@@ -45,9 +55,8 @@ mpl.rc('axes', labelsize=14)
 mpl.rc('xtick', labelsize=12)
 mpl.rc('ytick', labelsize=12)
 
-PROJECT_ROOT_DIR = "."
 CHAPTER_ID = "end_to_end_project"
-IMAGES_PATH = os.path.join(PROJECT_ROOT_DIR, "images", CHAPTER_ID)
+IMAGES_PATH = os.path.join(PRODUCTS_DIR, "images", CHAPTER_ID)
 os.makedirs(IMAGES_PATH, exist_ok=True)
 
 
@@ -64,7 +73,7 @@ def save_fig(fig_id, tight_layout=True, fig_extension="png", resolution=300):
 #   Download Housing Dataset
 # ============================================
 DOWNLOAD_ROOT = "https://raw.githubusercontent.com/ageron/handson-ml2/master/"
-HOUSING_PATH = os.path.join("datasets", "housing")
+HOUSING_PATH = os.path.join(PRODUCTS_DIR, "datasets", "housing")
 HOUSING_URL = DOWNLOAD_ROOT + "datasets/housing/housing.tgz"
 
 
@@ -141,12 +150,14 @@ with mlflow.start_run(run_name="Data_Preparation"):
     mlflow.log_param("strat_test_size", len(strat_test_set))
 
     # Save artifacts
-    strat_train_set.head().to_csv("strat_train_sample.csv", index=False)
-    mlflow.log_artifact("strat_train_sample.csv")
+    train_sample_path = os.path.join(PRODUCTS_DIR, "strat_train_sample.csv")
+    strat_train_set.head().to_csv(train_sample_path, index=False)
+    mlflow.log_artifact(train_sample_path)
 
-    strat_test_set.head().to_csv("strat_test_sample.csv", index=False)
-    mlflow.log_artifact("strat_test_sample.csv")
+    test_sample_path = os.path.join(PRODUCTS_DIR, "strat_test_sample.csv")
+    strat_test_set.head().to_csv(test_sample_path, index=False)
+    mlflow.log_artifact(test_sample_path)
 
 
 print("MLflow run completed. View results using:")
-print("  mlflow ui --backend-store-uri file:///C:/mlruns")
+print(f"  mlflow ui --backend-store-uri {mlruns_uri}")
