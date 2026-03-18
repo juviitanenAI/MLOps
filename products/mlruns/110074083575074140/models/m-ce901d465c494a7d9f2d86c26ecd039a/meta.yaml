@@ -1,0 +1,10 @@
+artifact_location: file:///Users/kalle.tolonen/test/MLOps/products/mlruns/110074083575074140/models/m-ce901d465c494a7d9f2d86c26ecd039a/artifacts
+creation_timestamp: 1773772518670
+experiment_id: '110074083575074140'
+last_updated_timestamp: 1773772521411
+model_id: m-ce901d465c494a7d9f2d86c26ecd039a
+model_type: null
+name: ridge_model
+source_run_id: b5b118fe690b4c149668dd7bdb0acf50
+status: 2
+status_message: null

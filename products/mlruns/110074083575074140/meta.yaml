@@ -1,0 +1,7 @@
+artifact_location: file:///Users/kalle.tolonen/test/MLOps/products/mlruns/110074083575074140
+creation_time: 1773772518534
+experiment_id: '110074083575074140'
+last_update_time: 1773772518534
+lifecycle_stage: active
+name: California_Housing_Ridge
+workspace: default

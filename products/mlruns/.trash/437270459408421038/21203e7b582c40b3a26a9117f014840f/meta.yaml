@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/kalle.tolonen/test/MLOps/products/mlruns/437270459408421038/21203e7b582c40b3a26a9117f014840f/artifacts
+deleted_time: 1773817953747
+end_time: 1773771317573
+entry_point_name: ''
+experiment_id: '437270459408421038'
+lifecycle_stage: deleted
+run_id: 21203e7b582c40b3a26a9117f014840f
+run_name: Data_Preparation
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1773771317106
+status: 3
+tags: []
+user_id: kalle.tolonen

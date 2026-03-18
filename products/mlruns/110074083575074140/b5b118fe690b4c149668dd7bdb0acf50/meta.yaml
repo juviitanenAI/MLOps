@@ -1,0 +1,14 @@
+artifact_uri: file:///Users/kalle.tolonen/test/MLOps/products/mlruns/110074083575074140/b5b118fe690b4c149668dd7bdb0acf50/artifacts
+end_time: 1773772526423
+entry_point_name: ''
+experiment_id: '110074083575074140'
+lifecycle_stage: active
+run_id: b5b118fe690b4c149668dd7bdb0acf50
+run_name: Ridge_Regression
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1773772518635
+status: 3
+tags: []
+user_id: kalle.tolonen

@@ -1,0 +1,8 @@
+artifact_location: file:///Users/kalle.tolonen/test/MLOps/products/mlruns/437270459408421038
+creation_time: 1773771317020
+experiment_id: '437270459408421038'
+last_update_time: 1773817953747
+lifecycle_stage: deleted
+name: Housing_Project_Experiment
+tags: {}
+workspace: default
